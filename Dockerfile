@@ -1,13 +1,8 @@
-# Базовый образ
 FROM python:3.12-slim
-
-# Установка зависимостей
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Копируем код
 COPY . .
+EXPOSE 5000
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "Test:create_app()"]
 
-# Запускаем приложение
-CMD ["flask", "--app", "Test", "run", "--host=0.0.0.0", "--port=5000"]
