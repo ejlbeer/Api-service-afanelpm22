@@ -54,14 +54,13 @@ def delete_note(note_id):
 
 @bp.get("/books")
 def list_books():
-    title_filter = request.args.get("title")
+    title_filter = request.args.get("title") 
     page = request.args.get("page", 1, type=int)
-    per_page = request.args.get("per_page", 5, type=int)
     query = Book.query
     if title_filter:
         query = query.filter(Book.title.ilike(f"%{title_filter}%"))
-    pagination = query.paginate(page=page, per_page=per_page, error_out=False)
-    return jsonify([
+    pagination = query.paginate(page=page, error_out=False)
+    books = [
         {
             "id": b.id,
             "title": b.title,
@@ -70,7 +69,12 @@ def list_books():
             "updated_at": b.updated_at
         }
         for b in pagination.items
-    ])
+    ]
+    return jsonify({
+        "items": books,
+        "page": pagination.page,
+    })
+
 @bp.post("/books")
 def create_book():
     data = request.get_json()
@@ -115,3 +119,4 @@ def delete_book(book_id):
     db.session.delete(book)
     db.session.commit()
     return "", 204
+
