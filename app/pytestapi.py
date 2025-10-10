@@ -1,4 +1,5 @@
 import json
+import pytest
 
 def test_create_note(client):
     response = client.post("/api/notes", json={
