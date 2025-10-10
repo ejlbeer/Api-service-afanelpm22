@@ -10,5 +10,5 @@ API для создания, редактирования, удаления за
 
 ## Локальный запуск
 ```bash
-   git clone https://github.com/ejlbeer/Api-service-afanelpm.git
+   git clone https://github.com/ejlbeer/Api-service-afanelpm22.git
 ```
