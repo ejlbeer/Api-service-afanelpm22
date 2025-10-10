@@ -22,10 +22,7 @@ def main():
     print("Статистика по кодам ответа:")
     for code, count in by_status.items():
         print(code, count)
-    
-    print("\nТоп страниц:")
-    for path, count in by_path.most_common(5):
-        print(path, count)
 
 if __name__ == "__main__":
+
     main()
