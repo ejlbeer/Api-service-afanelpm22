@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from . import db
 from .models import Note
+from .models import Book
 
 bp = Blueprint("api", __name__)
 
@@ -119,4 +120,5 @@ def delete_book(book_id):
     db.session.delete(book)
     db.session.commit()
     return "", 204
+
 
